@@ -156,7 +156,6 @@ public class AsAdmin {
     public static String[] buildProcessParams(final IAsAdminCmd cmd, final IAsAdminConfig config) {
         final List pbParams = new ArrayList();
         pbParams.add(ASADMIN_COMMAND_NAME);
-        pbParams.add(cmd.getActionCommand());
         if (!StringUtils.isEmpty(config.getHost()) &&
                 !Domain.START.equals(cmd.getActionCommand()) &&
                 !Domain.STOP.equals(cmd.getActionCommand()) &&
@@ -182,6 +181,7 @@ public class AsAdmin {
             pbParams.add(PASSWORDFILE_OPT);
             pbParams.add(config.getPasswordFile());
         }
+	pbParams.add(cmd.getActionCommand());
         pbParams.addAll(Arrays.asList(cmd.getParameters()));
         return (String[]) pbParams.toArray(new String[pbParams.size()]);
     }
